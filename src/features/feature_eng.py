@@ -2,9 +2,14 @@
 import pandas as pd
 import numpy as np  
 import os
+import yaml
 
 from sklearn.feature_extraction.text import CountVectorizer
 
+with open('params.yaml', 'r') as file:
+    params = yaml.safe_load(file)
+
+max_features = params['feature_eng']['max_features']    
 
 # Load processed train and test data
 train_data = pd.read_csv("data/processed/train.csv").dropna(subset=['content'])
